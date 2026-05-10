@@ -301,6 +301,22 @@
   .lang-name { color: var(--text); font-weight: 500; }
   .lang-level { color: var(--muted); font-size: 0.72rem; }
 
+  /* ── BEYOND ── */
+  .beyond-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .beyond-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem;
+    transition: border-color 0.15s;
+  }
+  .beyond-card:hover { border-color: var(--accent); }
+  .beyond-icon { font-size: 1.6rem; margin-bottom: 0.6rem; line-height: 1; }
+  .beyond-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
+  .beyond-desc  { font-size: 0.85rem; color: #8d96a0; line-height: 1.7; }
+
   /* ── BIO ── */
   .bio {
     font-size: 0.97rem; color: #8d96a0;
@@ -309,53 +325,6 @@
   .bio strong { color: var(--text); font-weight: 500; }
   .bio em     { color: var(--accent3); font-style: normal; }
 
-  /* ── TERMINAL ── */
-  .terminal {
-    margin-top: 2rem;
-    background: #010409;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    font-family: var(--mono);
-    font-size: 0.85rem;
-  }
-  .term-bar {
-    background: var(--bg3);
-    border-bottom: 1px solid var(--border);
-    padding: 0.55rem 1rem;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
-  .term-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-  .term-title {
-    margin-left: 0.5rem; font-size: 0.75rem;
-    color: var(--muted); flex: 1; text-align: center;
-  }
-  .term-body {
-    padding: 1rem 1.25rem 0.25rem;
-    min-height: 120px;
-    max-height: 320px;
-    overflow-y: auto;
-    line-height: 1.7;
-  }
-  .term-line   { color: #8d96a0; white-space: pre-wrap; word-break: break-word; }
-  .term-cmd    { color: var(--accent2); }
-  .term-prompt { color: var(--accent); }
-  .term-out-g  { color: var(--accent); }
-  .term-out-b  { color: var(--accent2); }
-  .term-out-p  { color: var(--accent3); }
-  .term-out-o  { color: var(--warn); }
-  .term-err    { color: #f85149; }
-  .term-input-row {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.5rem 1.25rem 0.75rem;
-    border-top: 1px solid var(--border);
-  }
-  .term-ps  { color: var(--accent); white-space: nowrap; font-size: 0.85rem; }
-  .term-input {
-    flex: 1; background: transparent; border: none; outline: none;
-    color: var(--text); font-family: var(--mono); font-size: 0.85rem;
-    caret-color: var(--accent);
-  }
 
   @media (max-width: 600px) {
     h1 { font-size: 1.5rem; }
@@ -380,13 +349,12 @@
         <p class="tagline">Energy Data Scientist · Milano, IT · MSc Energy Engineering @ Politecnico di Milano</p>
         <div class="badges">
           <span class="badge badge-green">Python</span>
-          <span class="badge badge-green">SQL</span>
           <span class="badge badge-green">Machine Learning</span>
           <span class="badge badge-blue">Power BI · DAX</span>
-          <span class="badge badge-blue">Snowflake</span>
           <span class="badge badge-purple">Time Series</span>
-          <span class="badge badge-purple">Forecasting</span>
           <span class="badge badge-orange">Energy Markets</span>
+          <span class="badge badge-orange">Renewable Energy</span>
+          <span class="badge badge-orange">Wind Energy</span>
         </div>
       </div>
     </div>
@@ -401,6 +369,7 @@
     <a href="#education">education</a>
     <a href="#research">research</a>
     <a href="#teaching">teaching</a>
+    <a href="#beyond">beyond</a>
     <a href="#contact">contact</a>
   </div>
 </nav>
@@ -411,39 +380,31 @@
     <p class="section-label">// profile</p>
 
     <p class="bio">
-      I'm an Energy Data Scientist with over 8 years of experience at the intersection of
+      I'm an Energy Data Scientist with 9 years of experience at the intersection of
       energy systems and data engineering. Based in Milan, I work on revenue forecasting,
       portfolio analytics and machine learning for the renewable energy sector —
-      currently as Senior Energy Markets Analyst at <strong>Nadara</strong>.
+      currently as <strong>Senior Energy Markets Analyst</strong> at <strong>Nadara</strong>, one of the biggest independent wind energy producers in Europe
     </p>
     <p class="bio">
       My background combines a <strong>MSc in Energy Engineering from Politecnico di Milano</strong>
       (110/110 cum laude) with hands-on experience in Switzerland at
-      <strong>Romande Énergie</strong>, where I built ML models for time series forecasting
-      and anomaly detection, and helped bring a community solar product to market in collaboration
-      with the <strong>Swiss Data Science Center at EPFL</strong>.
+      Romande Énergie, where I built ML models for time series forecasting
+      and anomaly detection n collaboration with the <strong>Swiss Data Science Center at EPFL</strong>, and helped bring a community solar product to market.
+      5 years in the analytics team built strong foundations on agile development, data visualisation and translating business needs into technical solutions.
     </p>
     <p class="bio">
       I've published peer-reviewed research in <em>Renewable and Sustainable Energy Reviews</em>
       and <em>Applied Energy</em>, and since 2022 I teach two modules on energy digitalisation
-      and time series analysis in the <strong>Master in IT Management at HES-SO Lausanne</strong>.
+      and time series analysis in the Master in IT Management at HES-SO Lausanne.
+    </p>
+    <p class="bio">
+      I care about how teams are built as much as what they build. I've spent a good part of
+      my career being the bridge between technical and business people — translating models
+      into decisions, and decisions back into models. I tend to think that sustainable software,
+      like sustainable energy, is mostly about the long game: doing things right rather than fast,
+      and investing in people before processes. Outside of work I play bass and guitar and try to convince notes and words to become songs.
     </p>
 
-    <div class="terminal" id="terminal" aria-label="Interactive terminal">
-      <div class="term-bar">
-        <span class="term-dot" style="background:#ff5f57"></span>
-        <span class="term-dot" style="background:#febc2e"></span>
-        <span class="term-dot" style="background:#28c840"></span>
-        <span class="term-title">patrizio@canzi ~ %</span>
-      </div>
-      <div class="term-body" id="term-body"></div>
-      <div class="term-input-row">
-        <span class="term-ps">patrizio@canzi ~ %</span>
-        <input class="term-input" id="term-input" type="text"
-               autocomplete="off" autocorrect="off" spellcheck="false"
-               placeholder="type a command or 'help'…" aria-label="Terminal input">
-      </div>
-    </div>
   </div>
 </section>
 
@@ -456,9 +417,9 @@
         <p class="stack-cat">Data & Analysis</p>
         <div class="stack-items">
           <span class="pill">Python</span>
+          <span class="pill">SQL</span>
           <span class="pill">R</span>
           <span class="pill">Matlab</span>
-          <span class="pill">SQL</span>
         </div>
       </div>
       <div class="stack-card">
@@ -466,7 +427,7 @@
         <div class="stack-items">
           <span class="pill">Snowflake</span>
           <span class="pill">PostgreSQL</span>
-          <span class="pill">Azure ML</span>
+          <span class="pill">Cloudera</span>
         </div>
       </div>
       <div class="stack-card">
@@ -498,6 +459,7 @@
         <p class="stack-cat">Domain</p>
         <div class="stack-items">
           <span class="pill">Energy markets</span>
+          <span class="pill">Energy trading</span>
           <span class="pill">Portfolio mgmt</span>
           <span class="pill">Smart grids</span>
           <span class="pill">Renewables</span>
@@ -518,9 +480,9 @@
         <p class="tl-title">Senior Energy Markets Analyst</p>
         <p class="tl-company">Nadara · Milano, IT</p>
         <p class="tl-desc">
-          Leading Power BI reporting for revenue forecasting and budgeting across energy market operations.
+          Contributing to Power BI reporting for revenue forecasting and budgeting across energy market operations.
           Translating complex business requirements into scalable data visualisation solutions.
-          Overseeing external development teams, validating data models and DAX logic,
+          Overseeing external development teams on computationally intensive risk models and data integration, validating data models and DAX logic,
           optimising report performance, and mentoring two junior analysts.
         </p>
         <div class="tl-tags">
@@ -528,7 +490,7 @@
           <span class="tag">DAX</span>
           <span class="tag">Forecasting</span>
           <span class="tag">Budgeting</span>
-          <span class="tag">Team lead</span>
+          <span class="tag">Team work</span>
         </div>
       </div>
 
@@ -567,7 +529,7 @@
           <span class="tag">Python</span>
           <span class="tag">Segmentation</span>
           <span class="tag">EPFL SDSC</span>
-          <span class="tag">Solar</span>
+          <span class="tag">Innovation</span>
         </div>
       </div>
 
@@ -603,6 +565,7 @@
           <p class="edu-title">MSc Energy Engineering — Energy for Sustainable Development</p>
           <p class="edu-inst">Politecnico di Milano · 110/110 cum laude · English track</p>
           <p class="edu-note">Exchange: AGH University of Science and Technology, Kraków — Energy & Fuels Faculty</p>
+          <p class="edu-note">Master thesis on computational fluid dynamics applied to vanadium redox flow batteries</p>
         </div>
       </div>
 
@@ -627,13 +590,13 @@
       <div class="pub-card">
         <p class="pub-year">2021 · Renewable and Sustainable Energy Reviews</p>
         <p class="pub-title">Business strategies for flexibility aggregators to steer clear of being "too small to bid"</p>
-        <p class="pub-journal">Elsevier · peer-reviewed · <a href="https://www.sciencedirect.com/journal/renewable-and-sustainable-energy-reviews" target="_blank" rel="noopener">journal ↗</a></p>
+        <p class="pub-journal">Elsevier · peer-reviewed · <a href="https://doi.org/10.1016/j.rser.2021.110908" target="_blank" rel="noopener">journal ↗</a></p>
       </div>
 
       <div class="pub-card">
         <p class="pub-year">2018 · Applied Energy</p>
         <p class="pub-title">Analysis of flow field design on vanadium redox flow battery performance: development of a 3D computational fluid dynamic model and experimental validation</p>
-        <p class="pub-journal">Elsevier · peer-reviewed · <a href="https://www.sciencedirect.com/journal/applied-energy" target="_blank" rel="noopener">journal ↗</a></p>
+        <p class="pub-journal">Elsevier · peer-reviewed · <a href="https://doi.org/10.1016/j.apenergy.2018.06.148" target="_blank" rel="noopener">journal ↗</a></p>
       </div>
 
     </div>
@@ -649,13 +612,13 @@
       <div class="teach-card">
         <p class="teach-label">since 2022 · HES-SO Lausanne</p>
         <p class="teach-title">Digitalisation in the Energy Sector</p>
-        <p class="teach-inst">Master in IT Management</p>
+        <p class="teach-inst">Master in Management of information systems in HES-SO Lausanne</p>
       </div>
 
       <div class="teach-card">
-        <p class="teach-label">since 2022 · HES-SO Lausanne</p>
+        <p class="teach-label">2024</p>
         <p class="teach-title">Time Series Analysis</p>
-        <p class="teach-inst">Master in IT Management</p>
+        <p class="teach-inst">Master in Management of information systems in HES-SO Lausanne</p>
       </div>
 
     </div>
@@ -671,6 +634,46 @@
       <div class="lang-card"><span class="lang-name">English</span><span class="lang-level">professional</span></div>
       <div class="lang-card"><span class="lang-name">Français</span><span class="lang-level">professional</span></div>
       <div class="lang-card"><span class="lang-name">Español</span><span class="lang-level">professional</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND -->
+<section id="beyond">
+  <div class="wrap">
+    <p class="section-label">// beyond the data</p>
+    <div class="beyond-grid">
+
+      <div class="beyond-card">
+        <div class="beyond-icon">⚡</div>
+        <p class="beyond-title">Renewable energy</p>
+        <p class="beyond-desc">
+          I studied energy engineering because I wanted to work on something that mattered.
+          I find the energy transition to be one of the most exciting and important challenges of our time,
+          and I feel lucky to be able to contribute to it for 8 ( sometimes more... ) hours a day. 
+        </p>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🌱</div>
+        <p class="beyond-title">Organic development</p>
+        <p class="beyond-desc">
+          I'm more interested in how a people learn over time than in short-term output.
+          Good work tends to come from people who feel ownership and aren't constantly
+          under pressure. That's the environment I try to create and thrive in.
+        </p>
+      </div>
+
+      <div class="beyond-card">
+        <div class="beyond-icon">🎸</div>
+        <p class="beyond-title">Bass</p>
+        <p class="beyond-desc">
+          I play bass. In the middle of the drummer and the guitarists, the bass is all about pace and linking.
+          Songs sometimes were born from the sofa, many of them were sang to people, some recorded in a studio with some good friends.
+          Music is great at teaching how to listen.
+        </p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -707,122 +710,9 @@
 
 <footer>
   <div class="wrap">
-    <p>© 2025 Patrizio Canzi · built with HTML · hosted on <a href="https://pages.github.com">GitHub Pages</a></p>
+    <p>© 2025 Patrizio Canzi · built with ♡ · hosted on <a href="https://pages.github.com">GitHub Pages</a></p>
   </div>
 </footer>
-<script>
-const DB = {
-  help: () => [
-    {t:'b', v:'available commands:'},
-    {t:'g', v:'  whoami        — who is Patrizio'},
-    {t:'g', v:'  role          — current position'},
-    {t:'g', v:'  stack         — tech stack'},
-    {t:'g', v:'  experience    — career timeline'},
-    {t:'g', v:'  education     — academic background'},
-    {t:'g', v:'  publications  — research papers'},
-    {t:'g', v:'  teaching      — university courses'},
-    {t:'g', v:'  languages     — spoken languages'},
-    {t:'g', v:'  contact       — get in touch'},
-    {t:'g', v:'  clear         — clear terminal'},
-  ],
-  whoami: () => [
-    {t:'p', v:'Patrizio Canzi'},
-    {t:'n', v:'Energy Data Scientist · Milano, Italy'},
-    {t:'n', v:'8+ years at the crossroads of energy systems & data engineering.'},
-    {t:'n', v:'MSc Energy Engineering, Politecnico di Milano — 110/110 cum laude.'},
-    {t:'n', v:'Researcher, lecturer, and builder of data products for renewables.'},
-  ],
-  role: () => [
-    {t:'o', v:'Senior Energy Markets Analyst'},
-    {t:'n', v:'Nadara · Milano · Apr 2024 – present'},
-    {t:'n', v:'Power BI forecasting, DAX optimisation, data model validation,'},
-    {t:'n', v:'external team supervision, junior mentoring.'},
-  ],
-  stack: () => [
-    {t:'b', v:'languages    Python · R · SQL · Matlab'},
-    {t:'b', v:'databases    Snowflake · PostgreSQL · Azure ML'},
-    {t:'b', v:'BI / viz     Power BI · DAX · QlikSense · QlikView'},
-    {t:'b', v:'ML           Time Series · Anomaly Detection · Scikit-learn'},
-    {t:'b', v:'workflow     Git · Agile / Scrum · LaTeX'},
-    {t:'b', v:'domain       Energy markets · Portfolio mgmt · Smart grids'},
-  ],
-  experience: () => [
-    {t:'o', v:'2024–now   Senior Energy Markets Analyst · Nadara, Milano'},
-    {t:'o', v:'2020–2024  Data Scientist · Romande Énergie, Morges CH'},
-    {t:'o', v:'2017–2019  Product Developer · Romande Énergie / EPFL, Lausanne CH'},
-    {t:'o', v:'2017       R&D Intern (Erasmus+) · Physee, TU Delft NL'},
-  ],
-  education: () => [
-    {t:'p', v:'2014–2017  MSc Energy Engineering · Politecnico di Milano'},
-    {t:'n', v:'           Energy for Sustainable Development · 110/110 cum laude'},
-    {t:'n', v:'           Exchange: AGH University, Kraków'},
-    {t:'p', v:'2011–2014  BSc Energy Engineering · Politecnico di Milano · 108/110'},
-  ],
-  publications: () => [
-    {t:'p', v:'[2021] Renewable and Sustainable Energy Reviews'},
-    {t:'n', v:'"Business strategies for flexibility aggregators to steer'},
-    {t:'n', v:' clear of being \'too small to bid\'"'},
-    {t:'p', v:'[2018] Applied Energy'},
-    {t:'n', v:'"Analysis of flow field design on vanadium redox flow battery'},
-    {t:'n', v:' performance: 3D CFD model & experimental validation"'},
-  ],
-  teaching: () => [
-    {t:'g', v:'since 2022 · HES-SO Lausanne · Master in IT Management'},
-    {t:'n', v:'  → Digitalisation in the Energy Sector'},
-    {t:'n', v:'  → Time Series Analysis'},
-  ],
-  languages: () => [
-    {t:'g', v:'Italiano   native'},
-    {t:'g', v:'English    professional'},
-    {t:'g', v:'Français   professional'},
-    {t:'g', v:'Español    professional'},
-  ],
-  contact: () => [
-    {t:'b', v:'email     patrizio.canzi@gmail.com'},
-    {t:'b', v:'linkedin  linkedin.com/in/patriziocanzi'},
-    {t:'b', v:'github    github.com/PatrizioCanzi'},
-    {t:'b', v:'phone     +39 371 423 94 76'},
-  ],
-};
-
-const body  = document.getElementById('term-body');
-const input = document.getElementById('term-input');
-
-function line(cls, text) {
-  const d = document.createElement('div');
-  d.className = 'term-line ' + cls;
-  d.textContent = text;
-  body.appendChild(d);
-}
-
-function run(cmd) {
-  cmd = cmd.trim().toLowerCase();
-  line('term-prompt', '% ' + cmd);
-  if (!cmd) return;
-  if (cmd === 'clear') { body.innerHTML = ''; return; }
-  const fn = DB[cmd];
-  if (!fn) {
-    line('term-err', 'command not found: ' + cmd + '  (try "help")');
-    return;
-  }
-  fn().forEach(({t, v}) => {
-    const map = {g:'term-out-g', b:'term-out-b', p:'term-out-p', o:'term-out-o', n:'term-line'};
-    line(map[t] || 'term-line', v);
-  });
-  body.scrollTop = body.scrollHeight;
-}
-
-input.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    run(input.value);
-    input.value = '';
-    body.scrollTop = body.scrollHeight;
-  }
-});
-
-run('help');
-input.focus();
-</script>
 
 </body>
 </html>
