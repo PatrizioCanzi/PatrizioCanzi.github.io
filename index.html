@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patrizio Canzi — Energy Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #7d8590;
+    --accent: #3fb950;
+    --accent2: #388bfd;
+    --accent3: #d2a8ff;
+    --warn: #f0883e;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .header-inner { display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; }
+
+  .avatar-ring {
+    width: 96px; height: 96px; border-radius: 50%;
+    border: 2px solid var(--accent);
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .avatar-ring img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .header-text { flex: 1; min-width: 200px; }
+
+  .prompt {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.02em;
+  }
+  .prompt::before { content: '$ '; color: var(--muted); }
+
+  h1 {
+    font-size: 2rem; font-weight: 500;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .tagline {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .badge {
+    font-family: var(--mono); font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .badge-green { color: var(--accent); border-color: var(--accent); }
+  .badge-blue  { color: var(--accent2); border-color: var(--accent2); }
+  .badge-purple{ color: var(--accent3); border-color: var(--accent3); }
+  .badge-orange{ color: var(--warn); border-color: var(--warn); }
+
+  /* ── NAV ── */
+  nav {
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,17,23,0.92);
+    backdrop-filter: blur(8px);
+  }
+  nav .wrap { display: flex; gap: 0; overflow-x: auto; }
+  nav a {
+    font-family: var(--mono); font-size: 0.82rem;
+    padding: 0.85rem 1rem;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  nav a:hover { color: var(--text); text-decoration: none; border-color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 { font-size: 1.2rem; font-weight: 500; margin-bottom: 1.5rem; }
+
+  /* ── STACK GRID ── */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .stack-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: border-color 0.15s;
+  }
+  .stack-card:hover { border-color: var(--accent2); }
+
+  .stack-cat {
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--muted); text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 0.5rem;
+  }
+
+  .stack-items { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  .pill {
+    font-family: var(--mono); font-size: 0.72rem;
+    background: var(--bg3);
+    color: var(--text);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0.4rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+
+  .tl-item { position: relative; margin-bottom: 2rem; }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -1.5rem; top: 0.45rem;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); border: 1px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--bg);
+  }
+
+  .tl-meta {
+    font-family: var(--mono); font-size: 0.75rem;
+    color: var(--muted); margin-bottom: 0.25rem;
+  }
+
+  .tl-title { font-weight: 500; font-size: 1rem; margin-bottom: 0.15rem; }
+
+  .tl-company {
+    font-size: 0.88rem; color: var(--accent2); margin-bottom: 0.6rem;
+  }
+
+  .tl-desc { font-size: 0.9rem; color: #8d96a0; line-height: 1.65; }
+
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+
+  .tag {
+    font-family: var(--mono); font-size: 0.68rem;
+    background: var(--bg3); color: var(--muted);
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+
+  .pub-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.25rem;
+    border-left: 3px solid var(--accent3);
+    transition: border-color 0.15s;
+  }
+  .pub-card:hover { border-color: var(--accent2); border-left-color: var(--accent2); }
+
+  .pub-year {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--accent3);
+    margin-bottom: 0.25rem;
+  }
+
+  .pub-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.25rem; }
+
+  .pub-journal { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── TEACHING ── */
+  .teach-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .teach-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.25rem;
+    border-top: 2px solid var(--warn);
+  }
+
+  .teach-label {
+    font-family: var(--mono); font-size: 0.68rem;
+    color: var(--warn); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .teach-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .teach-inst { font-size: 0.82rem; color: var(--muted); }
+
+  /* ── CONTACT / LINKS ── */
+  .links-grid {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+  }
+
+  .link-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.82rem;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.55rem 1rem;
+    color: var(--text);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .link-btn:hover { border-color: var(--accent2); color: var(--accent2); text-decoration: none; }
+
+  .link-btn svg { width: 16px; height: 16px; flex-shrink: 0; fill: currentColor; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 0;
+    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── ABOUT BLOCK ── */
+  .about-block {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem;
+    font-family: var(--mono); font-size: 0.88rem; line-height: 1.8;
+    color: #8d96a0;
+  }
+  .about-block .kw { color: var(--accent3); }
+  .about-block .str { color: var(--accent); }
+  .about-block .num { color: var(--warn); }
+  .about-block .cm  { color: var(--muted); font-style: italic; }
+
+  /* ── EDUCATION ── */
+  .edu-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.25rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .edu-year {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    white-space: nowrap; min-width: 80px; padding-top: 2px;
+  }
+  .edu-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .edu-inst  { font-size: 0.82rem; color: var(--accent2); margin-bottom: 0.2rem; }
+  .edu-note  { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── LANG ── */
+  .lang-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .lang-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.6rem 1rem;
+    font-family: var(--mono); font-size: 0.82rem;
+    display: flex; flex-direction: column; gap: 0.15rem;
+  }
+  .lang-name { color: var(--text); font-weight: 500; }
+  .lang-level { color: var(--muted); font-size: 0.72rem; }
+
+  /* ── BIO ── */
+  .bio {
+    font-size: 0.97rem; color: #8d96a0;
+    line-height: 1.8; margin-bottom: 1rem; max-width: 680px;
+  }
+  .bio strong { color: var(--text); font-weight: 500; }
+  .bio em     { color: var(--accent3); font-style: normal; }
+
+  /* ── TERMINAL ── */
+  .terminal {
+    margin-top: 2rem;
+    background: #010409;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+  .term-bar {
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    padding: 0.55rem 1rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .term-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .term-title {
+    margin-left: 0.5rem; font-size: 0.75rem;
+    color: var(--muted); flex: 1; text-align: center;
+  }
+  .term-body {
+    padding: 1rem 1.25rem 0.25rem;
+    min-height: 120px;
+    max-height: 320px;
+    overflow-y: auto;
+    line-height: 1.7;
+  }
+  .term-line   { color: #8d96a0; white-space: pre-wrap; word-break: break-word; }
+  .term-cmd    { color: var(--accent2); }
+  .term-prompt { color: var(--accent); }
+  .term-out-g  { color: var(--accent); }
+  .term-out-b  { color: var(--accent2); }
+  .term-out-p  { color: var(--accent3); }
+  .term-out-o  { color: var(--warn); }
+  .term-err    { color: #f85149; }
+  .term-input-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1.25rem 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .term-ps  { color: var(--accent); white-space: nowrap; font-size: 0.85rem; }
+  .term-input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: var(--mono); font-size: 0.85rem;
+    caret-color: var(--accent);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.5rem; }
+    .wrap { padding: 0 1rem; }
+    .edu-card { flex-direction: column; gap: 0.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="header-inner">
+      <div class="avatar-ring">
+        <!-- sostituisci profile.jpg con il nome del tuo file foto -->
+        <img src="profile.jpg" alt="Patrizio Canzi"
+             onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--mono);font-size:1.4rem;color:var(--accent);letter-spacing:-1px\'>PC</span>'">
+      </div>
+      <div class="header-text">
+        <p class="prompt">whoami</p>
+        <h1>Patrizio Canzi</h1>
+        <p class="tagline">Energy Data Scientist · Milano, IT · MSc Energy Engineering @ Politecnico di Milano</p>
+        <div class="badges">
+          <span class="badge badge-green">Python</span>
+          <span class="badge badge-green">SQL</span>
+          <span class="badge badge-green">Machine Learning</span>
+          <span class="badge badge-blue">Power BI · DAX</span>
+          <span class="badge badge-blue">Snowflake</span>
+          <span class="badge badge-purple">Time Series</span>
+          <span class="badge badge-purple">Forecasting</span>
+          <span class="badge badge-orange">Energy Markets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#about">about</a>
+    <a href="#stack">stack</a>
+    <a href="#experience">experience</a>
+    <a href="#education">education</a>
+    <a href="#research">research</a>
+    <a href="#teaching">teaching</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <p class="section-label">// profile</p>
+
+    <p class="bio">
+      I'm an Energy Data Scientist with over 8 years of experience at the intersection of
+      energy systems and data engineering. Based in Milan, I work on revenue forecasting,
+      portfolio analytics and machine learning for the renewable energy sector —
+      currently as Senior Energy Markets Analyst at <strong>Nadara</strong>.
+    </p>
+    <p class="bio">
+      My background combines a <strong>MSc in Energy Engineering from Politecnico di Milano</strong>
+      (110/110 cum laude) with hands-on experience in Switzerland at
+      <strong>Romande Énergie</strong>, where I built ML models for time series forecasting
+      and anomaly detection, and helped bring a community solar product to market in collaboration
+      with the <strong>Swiss Data Science Center at EPFL</strong>.
+    </p>
+    <p class="bio">
+      I've published peer-reviewed research in <em>Renewable and Sustainable Energy Reviews</em>
+      and <em>Applied Energy</em>, and since 2022 I teach two modules on energy digitalisation
+      and time series analysis in the <strong>Master in IT Management at HES-SO Lausanne</strong>.
+    </p>
+
+    <div class="terminal" id="terminal" aria-label="Interactive terminal">
+      <div class="term-bar">
+        <span class="term-dot" style="background:#ff5f57"></span>
+        <span class="term-dot" style="background:#febc2e"></span>
+        <span class="term-dot" style="background:#28c840"></span>
+        <span class="term-title">patrizio@canzi ~ %</span>
+      </div>
+      <div class="term-body" id="term-body"></div>
+      <div class="term-input-row">
+        <span class="term-ps">patrizio@canzi ~ %</span>
+        <input class="term-input" id="term-input" type="text"
+               autocomplete="off" autocorrect="off" spellcheck="false"
+               placeholder="type a command or 'help'…" aria-label="Terminal input">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="wrap">
+    <p class="section-label">// tech stack</p>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <p class="stack-cat">Data & Analysis</p>
+        <div class="stack-items">
+          <span class="pill">Python</span>
+          <span class="pill">R</span>
+          <span class="pill">Matlab</span>
+          <span class="pill">SQL</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <p class="stack-cat">Databases</p>
+        <div class="stack-items">
+          <span class="pill">Snowflake</span>
+          <span class="pill">PostgreSQL</span>
+          <span class="pill">Azure ML</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <p class="stack-cat">BI & Viz</p>
+        <div class="stack-items">
+          <span class="pill">Power BI</span>
+          <span class="pill">DAX</span>
+          <span class="pill">QlikSense</span>
+          <span class="pill">QlikView</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <p class="stack-cat">ML & Forecasting</p>
+        <div class="stack-items">
+          <span class="pill">Time Series</span>
+          <span class="pill">Anomaly Detection</span>
+          <span class="pill">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <p class="stack-cat">Workflow</p>
+        <div class="stack-items">
+          <span class="pill">Git</span>
+          <span class="pill">Agile / Scrum</span>
+          <span class="pill">LaTeX</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <p class="stack-cat">Domain</p>
+        <div class="stack-items">
+          <span class="pill">Energy markets</span>
+          <span class="pill">Portfolio mgmt</span>
+          <span class="pill">Smart grids</span>
+          <span class="pill">Renewables</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <p class="section-label">// experience</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <p class="tl-meta">Apr 2024 — present</p>
+        <p class="tl-title">Senior Energy Markets Analyst</p>
+        <p class="tl-company">Nadara · Milano, IT</p>
+        <p class="tl-desc">
+          Leading Power BI reporting for revenue forecasting and budgeting across energy market operations.
+          Translating complex business requirements into scalable data visualisation solutions.
+          Overseeing external development teams, validating data models and DAX logic,
+          optimising report performance, and mentoring two junior analysts.
+        </p>
+        <div class="tl-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Budgeting</span>
+          <span class="tag">Team lead</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <p class="tl-meta">Jan 2020 — Mar 2024</p>
+        <p class="tl-title">Data Scientist</p>
+        <p class="tl-company">Romande Énergie · Morges, CH</p>
+        <p class="tl-desc">
+          Built 10+ dashboards covering generation and distribution analytics, portfolio management and pricing.
+          Worked in an Agile team bridging technical and business stakeholders.
+          Accompanied business units through digital product creation.
+          Developed machine learning models for energy production forecasting and anomaly detection on large-scale time series data.
+        </p>
+        <div class="tl-tags">
+          <span class="tag">Python</span>
+          <span class="tag">ML</span>
+          <span class="tag">Time Series</span>
+          <span class="tag">QlikSense</span>
+          <span class="tag">Agile</span>
+          <span class="tag">Snowflake</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <p class="tl-meta">Nov 2017 — Dec 2019</p>
+        <p class="tl-title">Product Developer</p>
+        <p class="tl-company">Romande Énergie · SmartLab, EPFL Innovation Park, Lausanne, CH</p>
+        <p class="tl-desc">
+          Designed and commercially validated innovative smart energy products using Design Thinking methodologies —
+          including a community solar product brought to market.
+          Built numerical models for sales-process optimisation and customer segmentation in collaboration with the
+          Swiss Data Science Center (EPFL).
+        </p>
+        <div class="tl-tags">
+          <span class="tag">Design Thinking</span>
+          <span class="tag">Python</span>
+          <span class="tag">Segmentation</span>
+          <span class="tag">EPFL SDSC</span>
+          <span class="tag">Solar</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <p class="tl-meta">May 2017 — Aug 2017</p>
+        <p class="tl-title">R&D Intern (Erasmus+)</p>
+        <p class="tl-company">Physee · TU Delft, The Netherlands</p>
+        <p class="tl-desc">
+          Research and development at a deep-tech startup producing smart windows,
+          funded by the European Commission through an Erasmus+ scholarship.
+        </p>
+        <div class="tl-tags">
+          <span class="tag">R&D</span>
+          <span class="tag">Smart windows</span>
+          <span class="tag">Erasmus+</span>
+          <span class="tag">TU Delft</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <p class="section-label">// education</p>
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <p class="edu-year">2014 – 2017</p>
+        <div>
+          <p class="edu-title">MSc Energy Engineering — Energy for Sustainable Development</p>
+          <p class="edu-inst">Politecnico di Milano · 110/110 cum laude · English track</p>
+          <p class="edu-note">Exchange: AGH University of Science and Technology, Kraków — Energy & Fuels Faculty</p>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <p class="edu-year">2011 – 2014</p>
+        <div>
+          <p class="edu-title">BSc Energy Engineering</p>
+          <p class="edu-inst">Politecnico di Milano · 108/110</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="wrap">
+    <p class="section-label">// publications</p>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <p class="pub-year">2021 · Renewable and Sustainable Energy Reviews</p>
+        <p class="pub-title">Business strategies for flexibility aggregators to steer clear of being "too small to bid"</p>
+        <p class="pub-journal">Elsevier · peer-reviewed · <a href="https://www.sciencedirect.com/journal/renewable-and-sustainable-energy-reviews" target="_blank" rel="noopener">journal ↗</a></p>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-year">2018 · Applied Energy</p>
+        <p class="pub-title">Analysis of flow field design on vanadium redox flow battery performance: development of a 3D computational fluid dynamic model and experimental validation</p>
+        <p class="pub-journal">Elsevier · peer-reviewed · <a href="https://www.sciencedirect.com/journal/applied-energy" target="_blank" rel="noopener">journal ↗</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <div class="wrap">
+    <p class="section-label">// teaching</p>
+    <div class="teach-grid">
+
+      <div class="teach-card">
+        <p class="teach-label">since 2022 · HES-SO Lausanne</p>
+        <p class="teach-title">Digitalisation in the Energy Sector</p>
+        <p class="teach-inst">Master in IT Management</p>
+      </div>
+
+      <div class="teach-card">
+        <p class="teach-label">since 2022 · HES-SO Lausanne</p>
+        <p class="teach-title">Time Series Analysis</p>
+        <p class="teach-inst">Master in IT Management</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section>
+  <div class="wrap">
+    <p class="section-label">// languages</p>
+    <div class="lang-grid">
+      <div class="lang-card"><span class="lang-name">Italiano</span><span class="lang-level">native</span></div>
+      <div class="lang-card"><span class="lang-name">English</span><span class="lang-level">professional</span></div>
+      <div class="lang-card"><span class="lang-name">Français</span><span class="lang-level">professional</span></div>
+      <div class="lang-card"><span class="lang-name">Español</span><span class="lang-level">professional</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="section-label">// contact</p>
+    <div class="links-grid">
+
+      <a class="link-btn" href="mailto:patrizio.canzi@gmail.com">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        patrizio.canzi@gmail.com
+      </a>
+
+      <a class="link-btn" href="https://linkedin.com/in/patriziocanzi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        linkedin/patriziocanzi
+      </a>
+
+      <a class="link-btn" href="https://github.com/PatrizioCanzi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github/PatrizioCanzi
+      </a>
+
+      <a class="link-btn" href="tel:+393714239476">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +39 371 423 94 76
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2025 Patrizio Canzi · built with HTML · hosted on <a href="https://pages.github.com">GitHub Pages</a></p>
+  </div>
+</footer>
+<script>
+const DB = {
+  help: () => [
+    {t:'b', v:'available commands:'},
+    {t:'g', v:'  whoami        — who is Patrizio'},
+    {t:'g', v:'  role          — current position'},
+    {t:'g', v:'  stack         — tech stack'},
+    {t:'g', v:'  experience    — career timeline'},
+    {t:'g', v:'  education     — academic background'},
+    {t:'g', v:'  publications  — research papers'},
+    {t:'g', v:'  teaching      — university courses'},
+    {t:'g', v:'  languages     — spoken languages'},
+    {t:'g', v:'  contact       — get in touch'},
+    {t:'g', v:'  clear         — clear terminal'},
+  ],
+  whoami: () => [
+    {t:'p', v:'Patrizio Canzi'},
+    {t:'n', v:'Energy Data Scientist · Milano, Italy'},
+    {t:'n', v:'8+ years at the crossroads of energy systems & data engineering.'},
+    {t:'n', v:'MSc Energy Engineering, Politecnico di Milano — 110/110 cum laude.'},
+    {t:'n', v:'Researcher, lecturer, and builder of data products for renewables.'},
+  ],
+  role: () => [
+    {t:'o', v:'Senior Energy Markets Analyst'},
+    {t:'n', v:'Nadara · Milano · Apr 2024 – present'},
+    {t:'n', v:'Power BI forecasting, DAX optimisation, data model validation,'},
+    {t:'n', v:'external team supervision, junior mentoring.'},
+  ],
+  stack: () => [
+    {t:'b', v:'languages    Python · R · SQL · Matlab'},
+    {t:'b', v:'databases    Snowflake · PostgreSQL · Azure ML'},
+    {t:'b', v:'BI / viz     Power BI · DAX · QlikSense · QlikView'},
+    {t:'b', v:'ML           Time Series · Anomaly Detection · Scikit-learn'},
+    {t:'b', v:'workflow     Git · Agile / Scrum · LaTeX'},
+    {t:'b', v:'domain       Energy markets · Portfolio mgmt · Smart grids'},
+  ],
+  experience: () => [
+    {t:'o', v:'2024–now   Senior Energy Markets Analyst · Nadara, Milano'},
+    {t:'o', v:'2020–2024  Data Scientist · Romande Énergie, Morges CH'},
+    {t:'o', v:'2017–2019  Product Developer · Romande Énergie / EPFL, Lausanne CH'},
+    {t:'o', v:'2017       R&D Intern (Erasmus+) · Physee, TU Delft NL'},
+  ],
+  education: () => [
+    {t:'p', v:'2014–2017  MSc Energy Engineering · Politecnico di Milano'},
+    {t:'n', v:'           Energy for Sustainable Development · 110/110 cum laude'},
+    {t:'n', v:'           Exchange: AGH University, Kraków'},
+    {t:'p', v:'2011–2014  BSc Energy Engineering · Politecnico di Milano · 108/110'},
+  ],
+  publications: () => [
+    {t:'p', v:'[2021] Renewable and Sustainable Energy Reviews'},
+    {t:'n', v:'"Business strategies for flexibility aggregators to steer'},
+    {t:'n', v:' clear of being \'too small to bid\'"'},
+    {t:'p', v:'[2018] Applied Energy'},
+    {t:'n', v:'"Analysis of flow field design on vanadium redox flow battery'},
+    {t:'n', v:' performance: 3D CFD model & experimental validation"'},
+  ],
+  teaching: () => [
+    {t:'g', v:'since 2022 · HES-SO Lausanne · Master in IT Management'},
+    {t:'n', v:'  → Digitalisation in the Energy Sector'},
+    {t:'n', v:'  → Time Series Analysis'},
+  ],
+  languages: () => [
+    {t:'g', v:'Italiano   native'},
+    {t:'g', v:'English    professional'},
+    {t:'g', v:'Français   professional'},
+    {t:'g', v:'Español    professional'},
+  ],
+  contact: () => [
+    {t:'b', v:'email     patrizio.canzi@gmail.com'},
+    {t:'b', v:'linkedin  linkedin.com/in/patriziocanzi'},
+    {t:'b', v:'github    github.com/PatrizioCanzi'},
+    {t:'b', v:'phone     +39 371 423 94 76'},
+  ],
+};
+
+const body  = document.getElementById('term-body');
+const input = document.getElementById('term-input');
+
+function line(cls, text) {
+  const d = document.createElement('div');
+  d.className = 'term-line ' + cls;
+  d.textContent = text;
+  body.appendChild(d);
+}
+
+function run(cmd) {
+  cmd = cmd.trim().toLowerCase();
+  line('term-prompt', '% ' + cmd);
+  if (!cmd) return;
+  if (cmd === 'clear') { body.innerHTML = ''; return; }
+  const fn = DB[cmd];
+  if (!fn) {
+    line('term-err', 'command not found: ' + cmd + '  (try "help")');
+    return;
+  }
+  fn().forEach(({t, v}) => {
+    const map = {g:'term-out-g', b:'term-out-b', p:'term-out-p', o:'term-out-o', n:'term-line'};
+    line(map[t] || 'term-line', v);
+  });
+  body.scrollTop = body.scrollHeight;
+}
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    run(input.value);
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
+  }
+});
+
+run('help');
+input.focus();
+</script>
+
+</body>
+</html>
